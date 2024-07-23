@@ -1,0 +1,57 @@
+4a)Develop a Julia program and two separate functions to calculate GCD and
+LCM.
+
+function gcd(a, b)
+while b != 0
+a, b = b, a % b
+end
+return abs(a)
+end
+function lcm(a, b)
+return a * b / gcd(a, b)
+end
+function main()
+a = 56
+b = 98
+println("GCD of $(a) and $(b) is: ", gcd(a, b))
+println("LCM of $(a) and $(b) is: ", lcm(a, b))
+end
+main()
+OUTPUT
+
+4b)Develop a Julia program and a recursive function to calculate factorial of a
+number.
+function factorial(n)
+if n == 0
+return 1
+else
+return n * factorial(n - 1)
+end
+end
+function main()
+n = 5
+println("Factorial of $(n) is: ", factorial(n))
+end
+main()
+OUTPUT
+
+4C)Develop a Julia program and a recursive function to generate Fibonacci
+Series.
+function fibonacci(n)
+if n == 0
+return 0
+elseif n == 1
+return 1
+else
+return fibonacci(n - 1) + fibonacci(n - 2)
+end
+end
+function generate_fibonacci_series(n)
+series = [fibonacci(i) for i in 0:n]
+return series
+end
+n = 10
+series = generate_fibonacci_series(n)
+println("Fibonacci series of length $(n+1):")
+println(series)
+OUTPUt
