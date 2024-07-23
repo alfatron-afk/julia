@@ -1,0 +1,90 @@
+3a) An amount of money P(for principal) is put into an account which earns
+interest at r% per annum. So, at the end of one year, the amount becomes
+P+P*/100. This becomes the principal for the next year. Develop a Julia
+program to print the amount at the end of each year for the next 10 years.
+However, if the amount ever exceeds 2P, stop any further printing. Your
+program should prompt for the values of P and r.
+
+using ArgParse
+function parse_commandline()
+s = ArgParseSettings()
+@add_arg_table s begin
+"P"
+arg_type = Float64
+required = true
+help = "The principal amount."
+"r"
+arg_type = Float64
+required = true
+help = "The interest rate percentage."
+end
+return parse_args(s)
+end
+function print_amounts(P, r)
+println("Year 10 amount: ", P)
+for year in 2:10
+P = P + P * r / 100
+println("Year $year amount: ", P)
+if P > 2 * parse(Float64, get(ARGS, "P", ""), "")
+println("Amount exceeded 2P, stopping further printing.")
+break
+end
+end
+end
+function main()
+parsed_args = parse_commandline()
+P = parse(Float64, get(ARGS, "P", ""), "")
+r = parse(Float64, get(ARGS, "r", ""), "")
+if isempty(P) || isempty(r)
+println("Enter the principal amount (P): ")
+P = parse(Float64, readline())
+println("Enter the interest rate (r) in percentage: ")
+r = parse(Float64, readline())
+end
+print_amounts(P, r)
+end
+main()
+
+3b)Develop a Julia program which reads numbers from a file (input.txt) and
+finds the largest number, smallest number, count, sum and average of numbers.
+
+function read_numbers_from_file(filename)
+numbers = Float64[]
+# Read numbers from file
+open(filename, "r") do file
+for line in eachline(file)
+push!(numbers, parse(Float64, line))
+end
+end
+return numbers
+end
+function calculate_statistics(numbers)
+if isempty(numbers)
+println("No numbers found in the file.")
+return
+end
+max_number = maximum(numbers)
+min_number = minimum(numbers)
+count = length(numbers)
+total_sum = sum(numbers)
+average = total_sum / count
+println("Largest Number: ", max_number)
+println("Smallest Number: ", min_number)
+println("Count: ", count)
+println("Sum: ", total_sum)
+println("Average: ", average)
+end
+# Main program
+filename = C:\Users\LENOVO\Desktop # Change this to the path of your file if
+it's located elsewhere
+numbers = read_numbers_from_file(“input.txt”)
+calculate_statistics(numbers)
+function read_numbers(input.txt)
+numbers = Int[]
+open(filename) do file
+for line in eachline(file)
+push!(numbers, parse(Int, line))
+end
+end
+return numbers
+end
