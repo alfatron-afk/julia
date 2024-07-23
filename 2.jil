@@ -1,0 +1,56 @@
+2a) Develop a Julia program for the following problem: A computer repair shop
+charges $100 per hour for labour plus the cost of any parts used in the repair.
+However, the minimum charge for any job is $150. Prompt for the number of
+hours worked and the cost of parts and print the charge for the job.
+
+# Function to calculate the repair charge
+function calculate_charge(hours_worked, parts_cost)
+labor_cost = max(100 * hours_worked, 150) # Ensure minimum charge of
+$150
+total_cost = labor_cost + parts_cost
+return total_cost
+end
+# Main function
+function main()
+println("Welcome to the Computer Repair Shop!")
+println("Enter the number of hours worked:")
+hours_worked = parse(Float64, readline())
+println("Enter the cost of parts:")
+parts_cost = parse(Float64, readline())
+total_charge = calculate_charge(hours_worked, parts_cost)
+println("The total charge for the repair job is:", total_charge)
+end
+# Call the main function
+main()
+Output
+
+2b) Develop a Julia program to calculate a person’s regular pay, overtime pay and
+gross pay bases on the following: if hours worked is less than or equal to
+40,regular pay is calculated by multiplying hours worked by rate of pay, and
+overtime pay is 0.If hours worked is greater than 40 regular pay is calculated by
+multiplying 40 by the rate of pay, and overtime pay is calculated by multiplying
+the hours in excess of 40 by the rate of pay by 1.5.Gross pay is calculated by
+adding regular pay and overtime pay.
+
+function calculate_pay(hours_worked, rate_of_pay)
+regular_pay = 0
+overtime_pay = 0
+if hours_worked <= 40
+regular_pay = hours_worked * rate_of_pay
+else
+regular_pay = 40 * rate_of_pay
+overtime_hours = hours_worked - 40
+overtime_pay = overtime_hours * rate_of_pay * 1.5
+end
+gross_pay = regular_pay + overtime_pay
+return regular_pay, overtime_pay, gross_pay
+end
+# Example usage
+hours_worked = 45
+rate_of_pay = 10
+regular_pay, overtime_pay, gross_pay = calculate_pay(hours_worked,
+rate_of_pay)
+println("Regular Pay: ", regular_pay)
+println("Overtime Pay: ", overtime_pay)
+println("Gross Pay: ", gross_pay)
+Outpu
