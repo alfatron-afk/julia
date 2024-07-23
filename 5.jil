@@ -1,0 +1,65 @@
+5a)Develop a Julia program which reads a string (word) and prints whether the
+word is palindrome.
+
+function is_palindrome(word)
+n = length(word)
+for i in 1:n÷2
+if word[i] != word[n-i+1]
+return false
+end
+end
+return true
+end
+function main()
+println("Enter a word:")
+word = readline()
+if is_palindrome(word)
+println("The word is a palindrome.")
+else
+println("The word is not a palindrome.")
+end
+end
+main()
+OUTPUT
+
+5b)Develop a Julia program which reads and prints the words present in a
+file(input.txt) having Random Data in which words are dispersed
+randomly(Assumption: a word is a contiguous sequence of letters. A word is
+delimited by any non-letter character or end-of-line)
+
+function 
+
+read_and_print_words(filename)
+ # Open the file for reading
+ file = open(filename, "r")
+ 
+ # Initialize a variable to store the 
+current word
+ current_word = ""
+ 
+ # Loop through each line in the 
+file
+ for line in eachline(file)
+ # Loop through each character 
+in the line
+ for char in line
+ if isletter(char)
+ current_word *= char
+ else
+ if current_word != ""
+ println(current_word)
+ current_word = ""
+ end
+ end
+ end
+ # If line ends with a word, print 
+it
+ if current_word != ""
+ println(current_word)
+ current_word = ""
+ end
+ end
+ 
+ close(file)
+end
+read_and_print_words("input.txt")
